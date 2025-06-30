@@ -1,0 +1,122 @@
+\documentclass[a4paper,12pt]{article}
+\input{preamble}
+
+\addbibresource{ref.bib}
+
+% Custom commands
+\newcommand{\gev}{\textsc{Tool1}\xspace}
+\newcommand{\scr}{\textsc{Tool2}\xspace}
+
+\begin{document}
+
+% Title Page
+\begin{center}
+    \textbf{\large Synopsis of Research Proposal \\ for the [Insert Program Name]} \\
+    \vspace{0.2cm}
+    \textbf{[Insert Organization or Funding Agency Name]} \\
+\end{center}
+
+% Proposed Research Title
+\section*{Proposed Research Title}
+\begin{center}
+    \textbf{[Insert Research Title Here]}
+\end{center}
+
+% Introduction Section
+\section*{Introduction}
+This research explores [general topic or field], crucial for understanding [key phenomenon] \cite{peebles1980,aghanim2020}. [Key component] significantly influences [specific process], shaping [relevant outcome]. [Unique aspect] enables studying [specific parameters] with minimal interference \cite{aghanim2020}. The primary method, [key technique], measures [specific properties], testing [theoretical model] \cite{adamek2016}. A complementary approach, [secondary technique], provides insights into [specific aspect]. Using \gev for [specific purpose] and \scr for [specific advantage], this study integrates both to advance [research goal], supporting [future application] \cite{eingorn2022}.
+
+% Methodology Section
+\section*{Methodology of the Proposed Research}
+\begin{enumerate}[label=\alph*.]
+    \item \textbf{Theoretical Modeling}: Build models for [phenomenon] using [framework].
+    \item \textbf{Numerical Simulations}: Run \gev and \scr simulations to study [effects], identifying [features] with [tools].
+    \item \textbf{Algorithm Development}: Develop [algorithm] to simulate [process], producing [outputs].
+    \item \textbf{Data Analysis}: Use [techniques] to analyze [data], optimizing [goal].
+\end{enumerate}
+
+% Objectives Section
+\section*{Objectives}
+\begin{enumerate}
+    \item Develop models for [phenomenon] using [framework] to set baselines.
+    \item Conduct \gev and \scr simulations to analyze [effects].
+    \item Identify [features] with [tools] and compare statistically.
+    \item Implement [algorithm] to generate [outputs].
+    \item Apply [techniques] for [purpose].
+\end{enumerate}
+
+% Time Frame Section
+\section*{Time Frame}
+Time Frame for Research Tasks ([Insert Start Date] -- [Insert End Date])
+\begin{table}[ht]
+\footnotesize
+\centering
+\begin{tblr}{colsep=3pt,
+             cells = {font=\footnotesize, m},
+             colspec = {X[1,l] X[2.5, l] *{5}{X[c] }},
+             row{1} = {c, font=\footnotesize\bfseries},
+             hlines, vlines
+            }
+Objectives
+    & Major Activities
+        & [Period 1]
+            & [Period 2]
+                & [Period 3]
+                    & [Period 4]
+                        & [Period 5] \\
+Literature review
+    & Review relevant literature on [field or topic].
+        & \SCC{red!30}
+            & & & & \\
+Theoretical and computational modeling
+    & Develop [specific models or frameworks], prepare scripts for simulations.
+        & \SCC{blue!30}
+            & \SCC{blue!30}
+                & & & \\
+Numerical analyses
+    & Analyze [specific data or results], compare outputs from simulations.
+        & & & \SCC{orange!40}
+                    & & \\
+Interpreting results
+    & Evaluate findings and connect to [theoretical or observational expectations].
+        & & & & \SCC{teal!50}
+                        & \\
+Writing and Submission
+    & Draft the thesis, incorporate feedback, and submit the final version.
+        & & & & \SCC{violet!60}
+                        & \SCC{violet!60} \\
+\end{tblr}
+\end{table}
+
+\printbibliography
+
+% Signature Section
+\vspace*{\fill}
+{
+\small
+\begin{minipage}[t]{0.4\textwidth}
+    \textbf{Signature of the Supervisor} \\
+    Supervisor Name \\
+    Supervisor Title or Award \\
+    Academic Position \\
+    Department \\
+    Institution \\
+    Location \\
+    Email: Supervisor Email \\
+    Contact No: Supervisor Contact
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.4\textwidth}
+    \textbf{Signature of the Student} \\
+    Student Name \\
+    Degree Program \\
+    Session: Academic Session \\
+    Department \\
+    Institution \\
+    Location \\
+    Email: Student Email \\
+    Contact No: Student Contact
+\end{minipage}
+}
+
+\end{document}

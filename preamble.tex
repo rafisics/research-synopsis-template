@@ -1,0 +1,206 @@
+% \usepackage[utf8]{inputenc}
+% \usepackage[T1]{fontenc}
+\usepackage{geometry}
+\geometry{margin=0.8in}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{setspace}
+% \usepackage{array}
+% \usepackage{tabularx}
+% \usepackage{multirow}
+% \usepackage{etoolbox}
+\usepackage{xspace}
+\onehalfspacing
+\usepackage{mathptmx}
+\usepackage{fontawesome5}
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+\NewTableCommand\SCC[1]{\SetCell{bg=#1}}
+
+% Bibliography settings
+\usepackage[backend=biber,style=numeric,sorting=none,
+maxbibnames=4,giveninits=true,url=false]{biblatex}
+
+% Bibliography settings
+\renewcommand{\bibfont}{\small}
+\setlength\bibitemsep{2pt plus 0.3ex}
+
+% Normal font for journaltitle and suppress pp. for pages
+% \DeclareFieldFormat{journaltitle}{\textnormal{#1}}
+\DeclareFieldFormat[article]{pages}{#1}
+
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    % Only keep the first page in page-ranges of articles
+    \map{
+      \pertype{article}
+      \step[fieldsource=pages,
+            match=\regexp{^([0-9]+)(?:--|-)[0-9]+$},
+            replace={$1}]
+    }
+%     % Journal and publisher abbreviations
+%     \map{
+%       \step[fieldsource=journal,
+%             match=\regexp{\{\\\x{26}\}},
+%             replace=\regexp{\x{26}}]
+%       \step[fieldsource=journal,
+%             match=\regexp{Astronomy},
+%             replace={Astron.}]
+%       \step[fieldsource=journal,
+%             match=\regexp{Astrophysics},
+%             replace={Astrophys.}]  
+%       \step[fieldsource=journal,
+%             match=\regexp{Astrophysical\sJournal},
+%             replace={Astrophys. J.}]
+%       \step[fieldsource=journal,
+%             match=\regexp{Bulletin\sof\sthe\sAmerican\sAstronomical\sSociety},
+%             replace={Bull. Am. Astron. Soc.}]
+%       \step[fieldsource=journal,
+%             match=\regexp{Physics\sReports},
+%             replace={Phys. Rep.}]
+%       \step[fieldsource=journal,
+%             match=\regexp{Physical\sReview\sD},
+%             replace={Phys. Rev. D}]
+%       \step[fieldsource=journal,
+%             match=\regexp{Nature\sPhysics},
+%             replace={Nat. Phys.}]
+%       \step[fieldsource=journal,
+%             match=\regexp{Monthly\sNotices\sof\sthe\sRoyal\sAstronomical\sSociety},
+%             replace={Mon. Not. R. Astron. Soc.}]
+%       \step[fieldsource=journal,
+%             match=\regexp{Physics\sLetters\sB},
+%             replace={Phys. Lett. B}]
+%       \step[fieldsource=publisher,
+%             match=\regexp{Princeton\sUniversity\sPress},
+%             replace={Princeton Univ. Press}]
+%     }
+  }
+}
+
+% Suppress unnecessary fields
+\AtEveryBibitem{%
+  \ifentrytype{article}{%
+    \clearfield{title}%
+    \clearfield{subtitle}%
+    
+  }{}%
+  \clearfield{note}%
+  \clearfield{url}%
+  \clearfield{urldate}%
+  \clearfield{doi}%
+  \clearfield{eprint}%
+  \clearfield{issn}%
+  \clearfield{isbn}%
+  \clearfield{archiveprefix}%
+  \clearfield{primaryclass}%
+  \clearlist{language}%
+  \clearfield{address}%
+  % \ifentrytype{article}{\clearfield{publisher}}{}%
+}
+
+% Unified bibliography driver
+\DeclareBibliographyDriver{article}{%
+  \usebibmacro{author}%
+  \setunit{\addcomma\space}\newblock
+  \printfield{journaltitle}%
+  \setunit{\addspace}\newblock
+  \printtext[bold]{\printfield{volume}}%
+  \setunit{\addcomma\space}\newblock
+  \printfield{pages}%
+  \setunit{\addspace}\newblock
+  \printtext[parens]{\printfield{year}}%
+  \newunit\newblock
+  \usebibmacro{finentry}
+}
+\DeclareBibliographyDriver{book}{%
+  \usebibmacro{author}%
+  \setunit{\addcomma\space}\newblock
+  \printfield{title}%
+  \setunit{\addcomma\space}\newblock
+  \printlist{publisher}%
+  \setunit{\addspace}\newblock
+  \printtext[parens]{\printfield{year}}%
+  \newunit\newblock
+  \usebibmacro{finentry}
+}
+
+
+% Standard journal abbreviations (from MNRAS template, hossen2022)
+% Mostly as used by ADS, with a few additions for journals where MNRAS does not follow normal IAU style.
+
+\newcommand\aap{A\&A}                % Astronomy and Astrophysics
+\let\astap=\aap                          % alternative shortcut
+\newcommand\aapr{A\&ARv}             % Astronomy and Astrophysics Review (the)
+\newcommand\aaps{A\&AS}              % Astronomy and Astrophysics Supplement Series
+\newcommand\actaa{Acta Astron.}      % Acta Astronomica
+\newcommand\afz{Afz}                 % Astrofizika
+\newcommand\aj{AJ}                   % Astronomical Journal (the)
+\newcommand\ao{Appl. Opt.}           % Applied Optics
+\let\applopt=\ao                         % alternative shortcut
+\newcommand\aplett{Astrophys.~Lett.} % Astrophysics Letters
+\newcommand\apj{ApJ}                 % Astrophysical Journal
+\newcommand\apjl{ApJ}                % Astrophysical Journal, Letters
+\let\apjlett=\apjl                       % alternative shortcut
+\newcommand\apjs{ApJS}               % Astrophysical Journal, Supplement
+\let\apjsupp=\apjs                       % alternative shortcut
+% The following journal does not appear to exist! Disabled.
+%\newcommand\apspr{Astrophys.~Space~Phys.~Res.} % Astrophysics Space Physics Research
+\newcommand\apss{Ap\&SS}             % Astrophysics and Space Science
+\newcommand\araa{ARA\&A}             % Annual Review of Astronomy and Astrophysics
+\newcommand\arep{Astron. Rep.}       % Astronomy Reports
+\newcommand\aspc{ASP Conf. Ser.}     % ASP Conference Series
+\newcommand\azh{Azh}                 % Astronomicheskii Zhurnal
+\newcommand\baas{BAAS}               % Bulletin of the American Astronomical Society
+\newcommand\bac{Bull. Astron. Inst. Czechoslovakia} % Bulletin of the Astronomical Institutes of Czechoslovakia 
+\newcommand\bain{Bull. Astron. Inst. Netherlands} % Bulletin Astronomical Institute of the Netherlands
+\newcommand\caa{Chinese Astron. Astrophys.} % Chinese Astronomy and Astrophysics
+\newcommand\cjaa{Chinese J.~Astron. Astrophys.} % Chinese Journal of Astronomy and Astrophysics
+\newcommand\fcp{Fundamentals Cosmic Phys.}  % Fundamentals of Cosmic Physics
+\newcommand\gca{Geochimica Cosmochimica Acta}   % Geochimica Cosmochimica Acta
+\newcommand\grl{Geophys. Res. Lett.} % Geophysics Research Letters
+\newcommand\iaucirc{IAU~Circ.}       % IAU Cirulars
+\newcommand\icarus{Icarus}           % Icarus
+\newcommand\japa{J.~Astrophys. Astron.} % Journal of Astrophysics and Astronomy
+\newcommand\jcap{J.~Cosmology Astropart. Phys.} % Journal of Cosmology and Astroparticle Physics
+\newcommand\jcp{J.~Chem.~Phys.}      % Journal of Chemical Physics
+\newcommand\jgr{J.~Geophys.~Res.}    % Journal of Geophysics Research
+\newcommand\jqsrt{J.~Quant. Spectrosc. Radiative Transfer} % Journal of Quantitiative Spectroscopy and Radiative Transfer
+\newcommand\jrasc{J.~R.~Astron. Soc. Canada} % Journal of the RAS of Canada
+\newcommand\memras{Mem.~RAS}         % Memoirs of the RAS
+\newcommand\memsai{Mem. Soc. Astron. Italiana} % Memoire della Societa Astronomica Italiana
+\newcommand\mnassa{MNASSA}           % Monthly Notes of the Astronomical Society of Southern Africa
+\newcommand\mnras{MNRAS}             % Monthly Notices of the Royal Astronomical Society
+\newcommand\na{New~Astron.}          % New Astronomy
+\newcommand\nar{New~Astron.~Rev.}    % New Astronomy Review
+\newcommand\nat{Nature}              % Nature
+\newcommand\natphys{Nat. Phys.}      % Nature Physics
+\newcommand\nphysa{Nuclear Phys.~A}  % Nuclear Physics A
+\newcommand\plb{Phys. Lett.~B}       % Physical Letters B
+\newcommand\pra{Phys. Rev.~A}        % Physical Review A: General Physics
+\newcommand\prb{Phys. Rev.~B}        % Physical Review B: Solid State
+\newcommand\prc{Phys. Rev.~C}        % Physical Review C
+\newcommand\prd{Phys. Rev.~D}        % Physical Review D
+\newcommand\pre{Phys. Rev.~E}        % Physical Review E
+\newcommand\prl{Phys. Rev.~Lett.}    % Physical Review Letters
+\newcommand\pasa{Publ. Astron. Soc. Australia}  % Publications of the Astronomical Society of Australia
+\newcommand\pasp{PASP}               % Publications of the Astronomical Society of the Pacific
+\newcommand\pasj{PASJ}               % Publications of the Astronomical Society of Japan
+\newcommand\physrep{Phys.~Rep.}      % Physics Reports
+\newcommand\physscr{Phys.~Scr.}      % Physica Scripta
+\newcommand\planss{Planet. Space~Sci.} % Planetary Space Science
+\newcommand\procspie{Proc.~SPIE}     % Proceedings of the Society of Photo-Optical Instrumentation Engineers
+\newcommand\rmxaa{Rev. Mex. Astron. Astrofis.} % Revista Mexicana de Astronomia y Astrofisica
+\newcommand\qjras{QJRAS}             % Quarterly Journal of the RAS
+\newcommand\sci{Science}             % Science
+\newcommand\skytel{Sky \& Telesc.}   % Sky and Telescope
+\newcommand\solphys{Sol.~Phys.}      % Solar Physics
+\newcommand\sovast{Soviet~Ast.}      % Soviet Astronomy (aka Astronomy Reports)
+\newcommand\ssr{Space Sci. Rev.}     % Space Science Reviews
+\newcommand\zap{Z.~Astrophys.}       % Zeitschrift fuer Astrophysik
+
+% Publishers
+\newcommand\princeton{Princeton Univ. Press} % Princeton University. Press
